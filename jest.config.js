@@ -1,3 +1,21 @@
 module.exports = {
   preset: 'react-native',
+  moduleNameMapper: {
+    '^@components/(.*)$': '<rootDir>/src/components/$1',
+    '^@components$': '<rootDir>/src/components',
+    '^@containers/(.*)$': '<rootDir>/src/containers/$1',
+    '^@containers$': '<rootDir>/src/containers',
+    '^@helpers/(.*)$': '<rootDir>/src/helpers/$1',
+    '^@helpers$': '<rootDir>/src/helpers',
+    '^@states/(.*)$': '<rootDir>/src/states/$1',
+    '^@states$': '<rootDir>/src/states',
+    '^@assets/(.*)$': '<rootDir>/src/assets/$1',
+    '^@assets$': '<rootDir>/src/assets',
+    '^@models/(.*)$': '<rootDir>/src/models/$1',
+    '^@models$': '<rootDir>/src/models',
+    '^@theme/(.*)$': '<rootDir>/src/theme/$1',
+    '^@theme$': '<rootDir>/src/theme',
+    '^@navigators/(.*)$': '<rootDir>/src/navigators/$1',
+    '^@navigators$': '<rootDir>/src/navigators',
+  },
 };
