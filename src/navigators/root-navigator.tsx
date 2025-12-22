@@ -5,6 +5,7 @@ import {
 import { RootStackParamList } from 'root-stack-params';
 import { setTopLevelNavigator } from '@helpers/navigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import { HomeScreen } from '@containers';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
