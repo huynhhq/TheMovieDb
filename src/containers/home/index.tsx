@@ -25,10 +25,7 @@ import { RootStackParamList } from 'root-stack-params';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 // context
-import {
-  useFetchData,
-  useAdditionalFilterActions,
-} from './hooks';
+import { useFetchData, useAdditionalFilterActions } from './hooks';
 import { FilterMoviesProvider } from './context';
 
 interface Props extends NativeStackScreenProps<RootStackParamList, 'Home'> {}
@@ -94,18 +91,35 @@ const HomeScreenContent: React.FC<Props> = () => {
     return ({ item }: { item: Movie }) => <MovieCard item={item} />;
   }, []);
 
+  const renderFooter = useMemo(() => {
+    if (result.length === 0) return null;
+
+    return (
+      <View style={styles.footerContainer}>
+        <AppButton
+          type="primary"
+          title="Load More"
+          loading={loading}
+          disabled={loading}
+          onPress={loadMore}
+          style={styles.loadMoreButton}
+          textStyle={styles.loadMoreButtonText}
+        />
+      </View>
+    );
+  }, [result.length, loading, loadMore]);
+
   return (
     <Container style={styles.container}>
       <FlatList
         data={result}
         refreshing={loading}
-        onEndReachedThreshold={0.5}
         ListHeaderComponent={renderHeader}
+        ListFooterComponent={renderFooter}
         contentContainerStyle={styles.contentContainer}
         keyExtractor={(item: Movie, index: number) => `${item.id}-${index}`}
         onRefresh={onRefresh}
         renderItem={renderItem}
-        onEndReached={loadMore}
       />
     </Container>
   );

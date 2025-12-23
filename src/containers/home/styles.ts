@@ -1,4 +1,5 @@
 import { colors } from '@theme/colors';
+import { DEFAULT_FONTS } from '@theme/fonts';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -18,6 +19,18 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     gap: 20,
+  },
+  footerContainer: {
+    alignItems: 'center',
+    paddingHorizontal: 30,
+  },
+  loadMoreButton: {
+    width: '100%',
+  },
+  loadMoreButtonText: {
+    fontSize: 24,
+    color: colors.white,
+    fontFamily: DEFAULT_FONTS.SourceSans3SemiBold,
   },
 });
 
