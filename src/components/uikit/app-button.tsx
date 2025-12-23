@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, TextStyle } from 'react-native';
 
 // theme
 import { colors } from '@theme/colors';
@@ -12,20 +12,22 @@ export type ButtonVariant = 'primary' | 'rounded';
 
 interface Props extends React.ComponentProps<typeof TouchableOpacity> {
   title: string;
-  type?: ButtonVariant;
   loading?: boolean;
+  type?: ButtonVariant;
+  textStyle?: TextStyle;
 }
 
 const AppButton: React.FC<Props> = React.memo(
   ({
     title,
+    testID,
+    textStyle,
     type = 'primary',
     disabled = false,
     loading = false,
     activeOpacity = 0.7,
     style: containerStyle,
     onPress,
-    testID,
     ...props
   }) => {
     const isDisabled = disabled || loading;
@@ -47,7 +49,9 @@ const AppButton: React.FC<Props> = React.memo(
         {loading ? (
           <Loader width={20} height={20} color={colors.disabled_gray} />
         ) : (
-          <Text style={[styles.text, isDisabled && styles.disabledText]}>
+          <Text
+            style={[styles.text, textStyle, isDisabled && styles.disabledText]}
+          >
             {title}
           </Text>
         )}
