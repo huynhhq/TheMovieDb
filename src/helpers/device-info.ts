@@ -10,4 +10,8 @@ export default class DeviceInfo {
   };
   static isIos = Platform.OS === 'ios';
   static isAndroid = Platform.OS === 'android';
+
+  static setDeviceInset(insets: EdgeInsets) {
+    this.insets = insets;
+  }
 }

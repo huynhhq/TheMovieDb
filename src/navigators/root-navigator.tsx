@@ -6,7 +6,7 @@ import { RootStackParamList } from 'root-stack-params';
 import { setTopLevelNavigator } from '@helpers/navigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { HomeScreen } from '@containers';
+import TabNavigator from './bottom-tab-navigator';
 import { screenOptionsStack } from './navigation-config';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -21,11 +21,8 @@ export const RootNavigator = () => {
         setTopLevelNavigator(navigationRef.current);
       }}
     >
-      <RootStack.Navigator
-        initialRouteName={'Home'}
-        screenOptions={screenOptionsStack}
-      >
-        <RootStack.Screen name="Home" component={HomeScreen} />
+      <RootStack.Navigator screenOptions={screenOptionsStack}>
+        <RootStack.Screen name={'Tabs'} component={TabNavigator} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

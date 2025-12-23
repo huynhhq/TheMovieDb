@@ -11,4 +11,5 @@ export const colors = {
     300: '#E4E4E4',
     400: '#999999'
   },
+  secondary_blue: '#032541',
 };

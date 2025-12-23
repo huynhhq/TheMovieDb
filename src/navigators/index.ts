@@ -1,3 +1,2 @@
-import { RootNavigator } from './root-navigator';
-
-export { RootNavigator };
+export * from './root-navigator';
+export * from './bottom-tab-navigator';
