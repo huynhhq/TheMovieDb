@@ -7,7 +7,7 @@ const baseQueryWithAuth = () =>
     prepareHeaders: headers => {
       headers.set('Content-Type', 'application/json');
       headers.set('authorization', `Bearer ${TMDB_READ_ACCESS_TOKEN}`);
-console.log('`${API_URL}/${API_VERSION}/` :>> ', `${API_URL}/${API_VERSION}/`);
+
       return headers;
     },
   });
