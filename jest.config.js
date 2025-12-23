@@ -17,5 +17,9 @@ module.exports = {
     '^@theme$': '<rootDir>/src/theme',
     '^@navigators/(.*)$': '<rootDir>/src/navigators/$1',
     '^@navigators$': '<rootDir>/src/navigators',
+    '^@hooks/(.*)$': '<rootDir>/src/hooks/$1',
+    '^@hooks$': '<rootDir>/src/hooks',
+    '^@services/(.*)$': '<rootDir>/src/services/$1',
+    '^@services$': '<rootDir>/src/services',
   },
 };
