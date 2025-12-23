@@ -7,6 +7,7 @@ import { setTopLevelNavigator } from '@helpers/navigation';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { HomeScreen } from '@containers';
+import { screenOptionsStack } from './navigation-config';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
@@ -20,7 +21,12 @@ export const RootNavigator = () => {
         setTopLevelNavigator(navigationRef.current);
       }}
     >
-      <RootStack.Screen name="Home" component={HomeScreen} />
+      <RootStack.Navigator
+        initialRouteName={'Home'}
+        screenOptions={screenOptionsStack}
+      >
+        <RootStack.Screen name="Home" component={HomeScreen} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };
