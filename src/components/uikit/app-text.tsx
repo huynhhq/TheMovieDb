@@ -63,13 +63,6 @@ const getFontFamily = (
   return italic ? fontMap[weight].italic : fontMap[weight].regular;
 };
 
-interface ITextProps extends Omit<ComponentProps<typeof Text>, 'fontFamily'> {
-  color?: string;
-  fontSize?: number;
-  fontWeight?: FontWeight;
-  italic?: boolean;
-}
-
 const AppText: React.FC<ITextProps> = ({
   style,
   fontSize = 14,
