@@ -26,6 +26,7 @@ import {
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 import rootReducer, { type AppReducer } from './root-reducer';
+import { sharedApi } from '@services/shared-service';
 
 const persistConfig = {
   key: 'root',
@@ -70,11 +71,11 @@ export const rtkQueryErrorLogger: Middleware =
       const method = getHttpMethod(action);
 
       logger.error('API Error: >>>', {
-        endpoint: endpointName,
         method: method,
-        status: (payload as any)?.status || 'Unknown',
         error: payload,
+        endpoint: endpointName,
         originalArgs: originalArgs,
+        status: (payload as any)?.status || 'Unknown',
       });
     }
 
@@ -93,7 +94,7 @@ export const AppStore = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         warnAfter: 128,
       },
-    }).concat(rtkQueryErrorLogger),
+    }).concat(sharedApi.middleware, rtkQueryErrorLogger),
 });
 
 setupListeners(AppStore.dispatch);
