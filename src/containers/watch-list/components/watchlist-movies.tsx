@@ -3,13 +3,15 @@ import { View, FlatList, StyleSheet } from 'react-native';
 
 // components
 import { AppText } from '@components/uikit';
+import { MovieCard } from '@components/cards';
 
 // states
-import { RootState, useDispatch } from '@states/store';
 import { useSelector } from 'react-redux';
-import { MovieCard } from '@components/cards';
-import { goScreen } from '@helpers/navigation';
 import { removeFromWatchlist } from '@states/slices';
+import { RootState, useDispatch } from '@states/store';
+
+// helpers
+import { goScreen } from '@helpers/navigation';
 
 const WatchlistMovies: React.FC = () => {
   const dispatch = useDispatch();
