@@ -10,18 +10,25 @@ import { TMDB_BACKDROP_FOLDER, TMDB_IMAGE_DOMAIN } from '@helpers/config';
 
 interface Props {
   item: Movie;
+  onViewDetail: (item: Movie) => void;
 }
 
-const RecommendationCard: React.FC<Props> = ({ item }) => {
+const RecommendationCard: React.FC<Props> = ({ item, onViewDetail }) => {
   return (
-    <TouchableOpacity activeOpacity={0.7} style={styles.container}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      style={styles.container}
+      onPress={() => onViewDetail(item)}
+    >
       <AppImage
         style={styles.backdrop}
         uri={`${TMDB_IMAGE_DOMAIN}${TMDB_BACKDROP_FOLDER}${item.backdrop_path}`}
       />
       <View style={styles.content}>
         <AppText style={styles.title}>{item.title}</AppText>
-        <AppText style={styles.title}>{`${item?.vote_average?.toFixed(1)}%`}</AppText>
+        <AppText style={styles.title}>{`${item?.vote_average?.toFixed(
+          1,
+        )}%`}</AppText>
       </View>
     </TouchableOpacity>
   );

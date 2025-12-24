@@ -9,6 +9,7 @@ import { AppText, RecommendationCard } from '@components';
 
 // helpers
 import { windowWidth } from '@helpers/sizes';
+import { goScreen } from '@helpers/navigation';
 
 // theme
 import { DEFAULT_FONTS } from '@theme/fonts';
@@ -50,10 +51,7 @@ const RecommendationSkeleton: React.FC = () => {
   return (
     <View style={styles.skeletonContainer}>
       {[1, 2].map(index => (
-        <Animated.View
-          key={index}
-          style={[styles.skeletonCard, { opacity }]}
-        />
+        <Animated.View key={index} style={[styles.skeletonCard, { opacity }]} />
       ))}
     </View>
   );
@@ -64,9 +62,15 @@ const Recommendations: React.FC<Props> = ({ id }) => {
     skip: !id,
   });
 
+  const onViewDetail = useCallback((item: Movie) => {
+    goScreen('MovieDetail', { id: item.id });
+  }, []);
+
   const renderItem = useCallback(
-    ({ item }: { item: Movie }) => <RecommendationCard item={item} />,
-    [],
+    ({ item }: { item: Movie }) => (
+      <RecommendationCard item={item} onViewDetail={onViewDetail} />
+    ),
+    [onViewDetail],
   );
 
   const keyExtractor = useCallback(

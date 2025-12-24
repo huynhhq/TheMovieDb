@@ -53,7 +53,8 @@ const MovieDetailScreen: React.FC<Props> = ({ route }) => {
     skip: !id,
   });
 
-  const loading = isLoading || isFetching || isCreditsLoading || isCreditsFetching;
+  const loading =
+    isLoading || isFetching || isCreditsLoading || isCreditsFetching;
   const hasError = movieError || creditsError;
 
   const handleRetry = useCallback(() => {
@@ -74,7 +75,6 @@ const MovieDetailScreen: React.FC<Props> = ({ route }) => {
     }
   }, [refetchMovie, refetchCredits]);
 
-  // Loading state
   if (loading) {
     return (
       <Container style={styles.container} scrollable>
@@ -84,13 +84,16 @@ const MovieDetailScreen: React.FC<Props> = ({ route }) => {
     );
   }
 
-  // Error state
   if (hasError) {
     return (
       <Container style={styles.container} scrollable>
         <LogoHeader />
         <View style={styles.errorContainer}>
-          <AppText fontSize={20} fontWeight="semibold" style={styles.errorTitle}>
+          <AppText
+            fontSize={20}
+            fontWeight="semibold"
+            style={styles.errorTitle}
+          >
             Oops! Something went wrong
           </AppText>
           <AppText fontSize={16} style={styles.errorMessage}>
@@ -111,13 +114,16 @@ const MovieDetailScreen: React.FC<Props> = ({ route }) => {
     );
   }
 
-  // Empty state
   if (!data) {
     return (
       <Container style={styles.container} scrollable>
         <LogoHeader />
         <View style={styles.errorContainer}>
-          <AppText fontSize={20} fontWeight="semibold" style={styles.errorTitle}>
+          <AppText
+            fontSize={20}
+            fontWeight="semibold"
+            style={styles.errorTitle}
+          >
             Movie Not Found
           </AppText>
           <AppText fontSize={16} style={styles.errorMessage}>
