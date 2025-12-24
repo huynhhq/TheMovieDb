@@ -1,8 +1,12 @@
 import { memo } from 'react';
-import { StyleSheet, View } from 'react-native';
-import ScoreChart from '@components/score-chart';
-import { AppText } from '@components/uikit';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+
+// components
+import { AppText, ScoreChart } from '@components';
+
+// theme
 import { colors } from '@theme/colors';
+import { Bookmark } from '@assets/icons';
 
 interface Props {
   movie?: MovieDetail;
@@ -41,6 +45,25 @@ const FilmOverviewSection: React.FC<Props> = ({ movie, credits }) => {
           </View>
         </View>
       </View>
+      <View>
+        <AppText fontSize={20} italic color={colors.white}>
+          {movie?.tagline}
+        </AppText>
+      </View>
+      <View style={styles.overviewPart}>
+        <AppText fontSize={24} fontWeight="bold" color={colors.white}>
+          Overview
+        </AppText>
+        <AppText fontSize={16} color={colors.white}>
+          {movie?.overview}
+        </AppText>
+      </View>
+      <TouchableOpacity activeOpacity={0.7} style={styles.bookmarkButton}>
+        <Bookmark />
+        <AppText fontSize={18} fontWeight="semibold" color={colors.white}>
+          Add To Watchlist
+        </AppText>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -49,8 +72,9 @@ export default memo(FilmOverviewSection);
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary_blue,
+    gap: 34,
     padding: 30,
+    backgroundColor: colors.primary_blue,
   },
   row: {
     flexDirection: 'row',
@@ -59,5 +83,20 @@ const styles = StyleSheet.create({
   },
   scorePart: {
     gap: 8,
+  },
+  overviewPart: {
+    gap: 10,
+  },
+  bookmarkButton: {
+    gap: 10,
+    width: 200,
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingVertical: 7,
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    justifyContent: 'center',
+    borderColor: colors.white,
   },
 });
