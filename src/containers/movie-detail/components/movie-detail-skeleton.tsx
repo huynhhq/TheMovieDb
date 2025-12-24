@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { View, StyleSheet, Animated } from 'react-native';
+
 import { colors } from '@theme/colors';
 
 const MovieDetailSkeleton: React.FC = () => {
@@ -29,14 +30,26 @@ const MovieDetailSkeleton: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      {/* Header Section */}
-      <View style={styles.headerSection}>
-        <Animated.View style={[styles.backButton, { opacity }]} />
-        <View style={styles.titleArea}>
-          <Animated.View style={[styles.titleLine, { opacity }]} />
-          <Animated.View style={[styles.yearLine, { opacity }]} />
+      {/* Film Info Section */}
+      <View style={styles.filmInfoSection}>
+        <View style={styles.headerSection}>
+          <Animated.View style={[styles.backButton, { opacity }]} />
+          <View style={styles.titleArea}>
+            <Animated.View style={[styles.titleLine, { opacity }]} />
+            <Animated.View style={[styles.yearLine, { opacity }]} />
+          </View>
+          <Animated.View style={[styles.actionButton, { opacity }]} />
         </View>
-        <Animated.View style={[styles.actionButton, { opacity }]} />
+
+        <View style={styles.detailSection}>
+          <Animated.View style={[styles.posterImage, { opacity }]} />
+          <View style={styles.infoArea}>
+            <Animated.View style={[styles.infoLine, { opacity }]} />
+            <Animated.View style={[styles.infoLine, { opacity, width: '80%' }]} />
+            <Animated.View style={[styles.infoLine, { opacity, width: '90%' }]} />
+            <Animated.View style={[styles.infoLine, { opacity, width: '70%' }]} />
+          </View>
+        </View>
       </View>
 
       {/* Overview Section */}
@@ -57,14 +70,48 @@ const MovieDetailSkeleton: React.FC = () => {
             </View>
           </View>
         </View>
+
+        {/* Tagline */}
+        <Animated.View style={[styles.taglineLine, { opacity }]} />
+
+        {/* Overview */}
+        <View style={styles.overviewContent}>
+          <Animated.View style={[styles.overviewTitle, { opacity }]} />
+          <Animated.View style={[styles.contentLine, { opacity }]} />
+          <Animated.View style={[styles.contentLine, { opacity, width: '90%' }]} />
+          <Animated.View style={[styles.contentLine, { opacity, width: '95%' }]} />
+          <Animated.View style={[styles.contentLine, { opacity, width: '70%' }]} />
+        </View>
+
+        {/* Bookmark Button */}
+        <Animated.View style={[styles.bookmarkButton, { opacity }]} />
       </View>
 
-      {/* Content Section */}
-      <View style={styles.contentSection}>
-        <Animated.View style={[styles.contentLine, { opacity }]} />
-        <Animated.View style={[styles.contentLine, { opacity, width: '90%' }]} />
-        <Animated.View style={[styles.contentLine, { opacity, width: '95%' }]} />
-        <Animated.View style={[styles.contentLine, { opacity, width: '70%' }]} />
+      {/* Cast Section */}
+      <View style={styles.castSection}>
+        <Animated.View style={[styles.sectionTitle, { opacity }]} />
+        <View style={styles.castList}>
+          {[1, 2, 3].map(index => (
+            <View key={index} style={styles.castCard}>
+              <Animated.View style={[styles.castAvatar, { opacity }]} />
+              <Animated.View style={[styles.castName, { opacity }]} />
+              <Animated.View style={[styles.castCharacter, { opacity }]} />
+            </View>
+          ))}
+        </View>
+      </View>
+
+      {/* Recommendations Section */}
+      <View style={styles.recommendationsSection}>
+        <Animated.View style={[styles.sectionTitle, { opacity }]} />
+        <View style={styles.recommendationsList}>
+          {[1, 2].map(index => (
+            <Animated.View
+              key={index}
+              style={[styles.recommendationCard, { opacity }]}
+            />
+          ))}
+        </View>
       </View>
     </View>
   );
@@ -77,14 +124,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
-  headerSection: {
+  filmInfoSection: {
+    marginTop: 20,
     paddingTop: 16,
-    paddingHorizontal: 16,
-    backgroundColor: '#0399C2',
+    backgroundColor: colors.header_blue,
+  },
+  headerSection: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: 100,
+    paddingHorizontal: 16,
+    marginBottom: 20,
   },
   backButton: {
     width: 40,
@@ -114,9 +164,30 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: colors.gray[300],
   },
+  detailSection: {
+    gap: 20,
+    padding: 30,
+    flexDirection: 'row',
+  },
+  posterImage: {
+    width: 112,
+    height: 150,
+    borderRadius: 5,
+    backgroundColor: colors.gray[300],
+  },
+  infoArea: {
+    flex: 1,
+    gap: 8,
+  },
+  infoLine: {
+    height: 16,
+    backgroundColor: colors.gray[300],
+    borderRadius: 4,
+  },
   overviewSection: {
     backgroundColor: colors.primary_blue,
     padding: 30,
+    gap: 24,
   },
   scoreRow: {
     flexDirection: 'row',
@@ -158,14 +229,85 @@ const styles = StyleSheet.create({
     backgroundColor: colors.gray[400],
     borderRadius: 4,
   },
-  contentSection: {
-    padding: 30,
+  taglineLine: {
+    height: 20,
+    width: '80%',
+    backgroundColor: colors.gray[400],
+    borderRadius: 4,
+  },
+  overviewContent: {
     gap: 12,
+  },
+  overviewTitle: {
+    height: 24,
+    width: 120,
+    backgroundColor: colors.gray[400],
+    borderRadius: 4,
+    marginBottom: 8,
   },
   contentLine: {
     height: 16,
     width: '100%',
+    backgroundColor: colors.gray[400],
+    borderRadius: 4,
+  },
+  bookmarkButton: {
+    width: 200,
+    height: 40,
+    borderRadius: 5,
+    backgroundColor: colors.gray[400],
+  },
+  castSection: {
+    gap: 20,
+    marginTop: 50,
+  },
+  sectionTitle: {
+    height: 22,
+    width: 150,
     backgroundColor: colors.gray[200],
     borderRadius: 4,
+    marginHorizontal: 30,
+  },
+  castList: {
+    flexDirection: 'row',
+    gap: 16,
+    paddingHorizontal: 30,
+  },
+  castCard: {
+    width: 140,
+    gap: 8,
+  },
+  castAvatar: {
+    width: 140,
+    height: 175,
+    borderRadius: 8,
+    backgroundColor: colors.gray[200],
+  },
+  castName: {
+    height: 18,
+    width: '80%',
+    backgroundColor: colors.gray[200],
+    borderRadius: 4,
+  },
+  castCharacter: {
+    height: 16,
+    width: '60%',
+    backgroundColor: colors.gray[200],
+    borderRadius: 4,
+  },
+  recommendationsSection: {
+    gap: 20,
+    marginTop: 60,
+  },
+  recommendationsList: {
+    flexDirection: 'row',
+    gap: 20,
+    paddingHorizontal: 16,
+  },
+  recommendationCard: {
+    width: 300,
+    height: 200,
+    borderRadius: 8,
+    backgroundColor: colors.gray[200],
   },
 });

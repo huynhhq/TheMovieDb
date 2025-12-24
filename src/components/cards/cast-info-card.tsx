@@ -1,9 +1,13 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
+// components
 import { AppImage, AppText } from '@components/uikit';
 
+// theme
 import { colors } from '@theme/colors';
+
+// configs
 import { TMDB_CAST_FOLDER, TMDB_IMAGE_DOMAIN } from '@helpers/config';
 
 interface Props {

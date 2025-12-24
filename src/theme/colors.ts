@@ -1,8 +1,10 @@
 export const colors = {
   white: '#FFFFFF',
   black: '#000000',
-  primary_blue: '#00B4E4',
   border_e3: '#E3E3E3',
+  border_e4: '#E4E4E4',
+  primary_blue: '#00B4E4',
+  header_blue: '#0399C2',
   disabled_gray: '#A4A7AE',
   disabled_text: '#00000080',
   gray: {

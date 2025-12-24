@@ -1,32 +1,47 @@
 import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
+
+// libraries
 import moment from 'moment';
 
-import { AppImage, AppText } from '@components/uikit';
-import BackButton from '@components/back-button';
+// components
+import { AppImage, AppText, BackButton } from '@components';
 
+// theme
 import { colors } from '@theme/colors';
 import { DEFAULT_FONTS } from '@theme/fonts';
-import { TMDB_IMAGE_DOMAIN, TMDB_POSTER_FOLDER } from '@helpers/config';
+
+// helpers
 import { convertedToHoursAndMinutes } from '@helpers/date-helper';
+import { TMDB_IMAGE_DOMAIN, TMDB_POSTER_FOLDER } from '@helpers/config';
 
 interface Props {
   movie?: MovieDetail;
 }
 
 const FilmInfoSection: React.FC<Props> = ({ movie }) => {
+  const releaseYear = movie?.release_date
+    ? moment(movie.release_date).format('YYYY')
+    : '';
+  const language = movie?.original_language?.toUpperCase() || 'N/A';
+  const runtime = movie?.runtime
+    ? convertedToHoursAndMinutes(movie.runtime, { isShort: true })
+    : 'N/A';
+  const genres =
+    movie?.genres && movie.genres.length > 0
+      ? movie.genres.map(item => item.name).join(', ')
+      : 'N/A';
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <BackButton />
         <View style={styles.titleContainer}>
           <AppText style={styles.title} numberOfLines={2} ellipsizeMode="tail">
-            {movie?.title}
-            <AppText style={styles.year}>
-              {movie?.release_date
-                ? ` (${moment(movie.release_date).format('YYYY')})`
-                : ''}
-            </AppText>
+            {movie?.title || 'Unknown Title'}
+            {releaseYear && (
+              <AppText style={styles.year}> ({releaseYear})</AppText>
+            )}
           </AppText>
         </View>
         <View style={styles.button} />
@@ -35,30 +50,27 @@ const FilmInfoSection: React.FC<Props> = ({ movie }) => {
       <View style={styles.detailContainer}>
         <AppImage
           style={styles.thumbnail}
-          uri={`${TMDB_IMAGE_DOMAIN}${TMDB_POSTER_FOLDER}${movie?.poster_path}`}
+          uri={`${TMDB_IMAGE_DOMAIN}${TMDB_POSTER_FOLDER}${movie?.poster_path || ''}`}
         />
         <View style={styles.infoContainer}>
           <AppText fontSize={16} color={colors.white}>
-            {movie?.release_date}
-            {` (${movie?.original_language.toUpperCase()}) ● ${convertedToHoursAndMinutes(
-              movie?.runtime,
-              { isShort: true },
-            )}`}
+            {movie?.release_date || 'N/A'}
+            {` (${language}) ● ${runtime}`}
           </AppText>
           <AppText fontSize={16} color={colors.white}>
-            {movie?.genres.map(item => item.name).join(', ')}
+            {genres}
           </AppText>
           <AppText fontSize={16} color={colors.white}>
             <AppText fontSize={16} color={colors.white} fontWeight={'semibold'}>
               Status:{' '}
             </AppText>
-            {movie?.status}
+            {movie?.status || 'N/A'}
           </AppText>
           <AppText fontSize={16} color={colors.white}>
             <AppText fontSize={16} color={colors.white} fontWeight={'semibold'}>
               Original Language:{' '}
             </AppText>
-            {movie?.original_language}
+            {language}
           </AppText>
         </View>
       </View>
@@ -72,7 +84,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 20,
     paddingTop: 16,
-    backgroundColor: '#0399C2',
+    backgroundColor: colors.header_blue,
   },
   header: {
     flex: 1,

@@ -1,0 +1,37 @@
+// Layout constants
+export const SPACING = {
+  SMALL: 8,
+  MEDIUM: 16,
+  LARGE: 20,
+  XLARGE: 30,
+  XXLARGE: 34,
+  SECTION_TOP: 50,
+  LINE_TOP: 35,
+  LINE_BOTTOM: 25,
+} as const;
+
+export const GAPS = {
+  SMALL: 8,
+  MEDIUM: 12,
+  LARGE: 16,
+  XLARGE: 20,
+  XXLARGE: 34,
+} as const;
+
+export const DIMENSIONS = {
+  POSTER_WIDTH: 112,
+  POSTER_HEIGHT: 150,
+  CAST_CARD_WIDTH: 140,
+  CAST_CARD_HEIGHT: 175,
+  SCORE_CIRCLE_SIZE: 60,
+  BOOKMARK_BUTTON_WIDTH: 200,
+  RECOMMENDATION_CARD_WIDTH: 300,
+  RECOMMENDATION_CARD_HEIGHT: 200,
+} as const;
+
+export const BORDER_RADIUS = {
+  SMALL: 4,
+  MEDIUM: 5,
+  LARGE: 8,
+} as const;
+

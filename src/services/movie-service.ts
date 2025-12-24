@@ -22,6 +22,11 @@ export const movieApi = sharedApi.injectEndpoints({
         url: `movie/${id}/credits`,
       }),
     }),
+    getRecommendations: builder.query<GetMovieListResponse, number>({
+      query: id => ({
+        url: `movie/${id}/recommendations`,
+      }),
+    }),
   }),
 });
 
@@ -29,4 +34,5 @@ export const {
   useGetMoviesQuery,
   useGetMovieDetailQuery,
   useGetMovieCreditsQuery,
+  useGetRecommendationsQuery,
 } = movieApi;

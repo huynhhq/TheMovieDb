@@ -14,7 +14,14 @@ const BackButton: React.FC<Props> = ({ callback }) => {
   }, [callback]);
 
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.7} onPress={handleOnPress}>
+    <TouchableOpacity
+      style={styles.container}
+      activeOpacity={0.7}
+      onPress={handleOnPress}
+      accessibilityLabel="Go back"
+      accessibilityHint="Returns to the previous screen"
+      accessibilityRole="button"
+    >
       <ChevronLeft />
     </TouchableOpacity>
   );

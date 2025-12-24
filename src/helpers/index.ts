@@ -1,3 +1,4 @@
+export * from './sizes';
 export * from './config';
 export * from './formats';
 export * from './navigation';
