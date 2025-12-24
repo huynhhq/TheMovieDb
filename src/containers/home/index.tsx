@@ -27,8 +27,10 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 // context
 import { useFetchData, useAdditionalFilterActions } from './hooks';
 import { FilterMoviesProvider } from './context';
+import { goScreen } from '@helpers/navigation';
 
-interface Props extends NativeStackScreenProps<BottomTabStackParamList, 'Home'> {}
+interface Props
+  extends NativeStackScreenProps<BottomTabStackParamList, 'Home'> {}
 
 const HomeScreenContent: React.FC<Props> = () => {
   const {
@@ -88,7 +90,12 @@ const HomeScreenContent: React.FC<Props> = () => {
   ]);
 
   const renderItem = useMemo(() => {
-    return ({ item }: { item: Movie }) => <MovieCard item={item} />;
+    const onViewDetail = (item: Movie) => {
+      goScreen('MovieDetail', { id: item.id });
+    };
+    return ({ item }: { item: Movie }) => (
+      <MovieCard item={item} onViewDetail={onViewDetail} />
+    );
   }, []);
 
   const renderFooter = useMemo(() => {

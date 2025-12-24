@@ -15,4 +15,5 @@ export const colors = {
   secondary_blue: '#032541',
   purple: '#9747FF',
   dark_blue: '#042541',
+  green: '#45FF8F',
 };

@@ -1,11 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useGetNowPlayingMoviesQuery } from '@services/movie-service';
+
+// services
+import { useGetMoviesQuery } from '@services/movie-service';
+
+// context
 import { useFilterMoviesCommit, useFilterMoviesSelector } from '../context';
 
 export const useFetchData = () => {
   const commit = useFilterMoviesCommit();
   const { page, status } = useFilterMoviesSelector(state => state.params);
-  const { data, isLoading, isFetching, refetch } = useGetNowPlayingMoviesQuery({
+  const { data, isLoading, isFetching, refetch } = useGetMoviesQuery({
     page,
     status,
   });

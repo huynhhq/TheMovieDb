@@ -13,13 +13,15 @@ import { TMDB_POSTER_FOLDER, TMDB_IMAGE_DOMAIN } from '@helpers/config';
 interface Props {
   item: Movie;
   containerStyle?: ViewStyle;
+  onViewDetail: (item: Movie) => void;
 }
 
-const MovieCard: React.FC<Props> = ({ containerStyle, item }) => {
+const MovieCard: React.FC<Props> = ({ containerStyle, item, onViewDetail }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       style={[styles.container, containerStyle]}
+      onPress={() => onViewDetail(item)}
     >
       <AppImage
         style={styles.thumbnail}

@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useMemo } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
+// components
 import {
   BottomSheetModal,
   BottomSheetBackdrop,
@@ -10,8 +11,11 @@ import {
 import { AppText } from '@components/uikit';
 import { Cancel, ChevronDown, Check } from '@assets/icons';
 
+// theme
 import { colors } from '@theme/colors';
 import { DEFAULT_FONTS } from '@theme/fonts';
+
+// helpers
 import DeviceInfo from '@helpers/device-info';
 import { MOVIE_SORT_OPTIONS } from '@values/constants';
 
