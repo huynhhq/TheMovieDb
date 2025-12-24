@@ -10,8 +10,16 @@ import { LogoHeader } from '@components/headers';
 
 // styles
 import styles from './styles';
-import { useGetMovieCreditsQuery, useGetMovieDetailQuery } from '@services/movie-service';
-import { FilmInfoSection, FilmOverviewSection, MovieDetailSkeleton } from './components';
+import {
+  useGetMovieCreditsQuery,
+  useGetMovieDetailQuery,
+} from '@services/movie-service';
+import {
+  FilmInfoSection,
+  FilmOverviewSection,
+  MovieDetailSkeleton,
+  TopBilledCastSection,
+} from './components';
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, 'MovieDetail'> {}
@@ -50,6 +58,7 @@ const MovieDetailScreen: React.FC<Props> = ({ route }) => {
       <LogoHeader />
       <FilmInfoSection movie={data} />
       <FilmOverviewSection movie={data} credits={credits} />
+      <TopBilledCastSection casts={credits?.cast} />
     </Container>
   );
 };

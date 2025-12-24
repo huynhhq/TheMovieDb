@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import moment from 'moment';
 
@@ -66,7 +66,7 @@ const FilmInfoSection: React.FC<Props> = ({ movie }) => {
   );
 };
 
-export default FilmInfoSection;
+export default memo(FilmInfoSection);
 
 const styles = StyleSheet.create({
   container: {
@@ -112,6 +112,6 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    gap: 8
+    gap: 8,
   },
 });
