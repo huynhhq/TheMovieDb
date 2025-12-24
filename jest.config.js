@@ -21,5 +21,9 @@ module.exports = {
     '^@hooks$': '<rootDir>/src/hooks',
     '^@services/(.*)$': '<rootDir>/src/services/$1',
     '^@services$': '<rootDir>/src/services',
+    '^@contexts/(.*)$': '<rootDir>/src/contexts/$1',
+    '^@contexts$': '<rootDir>/src/contexts',
+    '^@values/(.*)$': '<rootDir>/src/values/$1',
+    '^@values$': '<rootDir>/src/values',
   },
 };

@@ -23,7 +23,11 @@
       "@hooks/*": ["src/hooks/*"],
       "@hooks": ["src/hooks"],
       "@services/*": ["src/services/*"],
-      "@services": ["src/services"]
+      "@services": ["src/services"],
+      "@contexts/*": ["src/contexts/*"],
+      "@contexts": ["src/contexts"],
+      "@values/*": ["src/values/*"],
+      "@values": ["src/values"],
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

@@ -17,8 +17,11 @@ module.exports = {
           '@components': './src/components',
           '@navigators': './src/navigators',
           '@containers': './src/containers',
+          '@contexts': './src/contexts',
+          '@values': './src/values',
         },
       },
     ],
+    'react-native-reanimated/plugin',
   ],
 };

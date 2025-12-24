@@ -1,5 +1,7 @@
 interface ISvgIconProps {
   size?: number;
+  width?: number;
+  height?: number;
   color?: string;
   strokeWidth?: number;
 }

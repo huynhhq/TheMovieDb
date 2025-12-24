@@ -14,4 +14,8 @@ export default class DeviceInfo {
   static setDeviceInset(insets: EdgeInsets) {
     this.insets = insets;
   }
+
+  static getBottomSpace() {
+    return this.insets.bottom;
+  }
 }

@@ -15,4 +15,5 @@ interface Movie {
   vote_count: number;
 }
 
-interface GetNowPlayingMoviesResponse extends GetItemsResponse<Movie> {}
+interface GetMovieListResponse extends GetItemsResponse<Movie> {}
+

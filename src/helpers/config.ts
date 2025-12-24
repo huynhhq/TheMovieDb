@@ -2,6 +2,7 @@ import Config from 'react-native-config';
 
 const {
   API_URL,
+  ACCOUNT_ID,
   API_VERSION,
   TMDB_API_KEY,
   TMDB_IMAGE_DOMAIN,
@@ -12,8 +13,9 @@ const {
 
 export {
   API_URL,
+  ACCOUNT_ID,
   API_VERSION,
-  TMDB_API_KEY as API_KEY,
+  TMDB_API_KEY,
   TMDB_IMAGE_DOMAIN,
   TMDB_POSTER_FOLDER,
   TMDB_THUMBNAIL_FOLDER,

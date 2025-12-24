@@ -21,14 +21,14 @@ import {
 } from './constants';
 
 // navigation
-import { RootStackParamList } from 'root-stack-params';
+import { BottomTabStackParamList } from 'root-stack-params';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 // context
 import { useFetchData, useAdditionalFilterActions } from './hooks';
 import { FilterMoviesProvider } from './context';
 
-interface Props extends NativeStackScreenProps<RootStackParamList, 'Home'> {}
+interface Props extends NativeStackScreenProps<BottomTabStackParamList, 'Home'> {}
 
 const HomeScreenContent: React.FC<Props> = () => {
   const {

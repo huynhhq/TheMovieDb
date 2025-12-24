@@ -3,7 +3,7 @@ import { sharedApi } from './shared-service';
 
 export const movieApi = sharedApi.injectEndpoints({
   endpoints: builder => ({
-    getNowPlayingMovies: builder.query<GetNowPlayingMoviesResponse, IParams>({
+    getNowPlayingMovies: builder.query<GetMovieListResponse, IParams>({
       query: ({status, ...params}) => {
         return {
           url: `movie/${status}`,
