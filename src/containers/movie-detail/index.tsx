@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { View } from 'react-native';
 
 // navigation
 import { RootStackParamList } from 'root-stack-params';
@@ -12,7 +11,7 @@ import { LogoHeader } from '@components/headers';
 // styles
 import styles from './styles';
 import { useGetMovieCreditsQuery, useGetMovieDetailQuery } from '@services/movie-service';
-import { FilmInfoSection, FilmOverviewSection } from './components';
+import { FilmInfoSection, FilmOverviewSection, MovieDetailSkeleton } from './components';
 
 interface Props
   extends NativeStackScreenProps<RootStackParamList, 'MovieDetail'> {}
@@ -38,7 +37,12 @@ const MovieDetailScreen: React.FC<Props> = ({ route }) => {
   );
 
   if (loading) {
-    return <View />;
+    return (
+      <Container style={styles.container} scrollable>
+        <LogoHeader />
+        <MovieDetailSkeleton />
+      </Container>
+    );
   }
 
   return (
