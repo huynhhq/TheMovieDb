@@ -1,7 +1,7 @@
 import React from 'react';
 
 // components
-import { MainFilter, UserInfoSection } from './components';
+import { MainFilter, UserInfoSection, WatchlistMovies } from './components';
 import { Container, LogoHeader } from '@components';
 
 // styles
@@ -18,10 +18,11 @@ interface Props
   extends NativeStackScreenProps<BottomTabStackParamList, 'Watchlist'> {}
 const WatchListContent: React.FC<Props> = () => {
   return (
-    <Container style={styles.container}>
+    <Container edges={['top']} style={styles.container}>
       <LogoHeader />
       <UserInfoSection />
       <MainFilter />
+      <WatchlistMovies />
     </Container>
   );
 };

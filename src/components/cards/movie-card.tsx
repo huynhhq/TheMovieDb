@@ -9,19 +9,28 @@ import { colors } from '@theme/colors';
 
 // configs
 import { TMDB_POSTER_FOLDER, TMDB_IMAGE_DOMAIN } from '@helpers/config';
+import { Cancel } from '@assets/icons';
 
 interface Props {
-  item: Movie;
+  item: Movie | MovieDetail;
   containerStyle?: ViewStyle;
-  onViewDetail: (item: Movie) => void;
+  onRemove?: (id: number) => void;
+  onViewDetail: (id: number) => void;
 }
 
-const MovieCard: React.FC<Props> = ({ containerStyle, item, onViewDetail }) => {
+const HIT_SLOP = { top: 20, left: 20, right: 20, bottom: 20 };
+
+const MovieCard: React.FC<Props> = ({ containerStyle, item, onViewDetail, onRemove }) => {
+
+  const handleRemove = () => {
+    onRemove?.(item.id);
+  };
+
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       style={[styles.container, containerStyle]}
-      onPress={() => onViewDetail(item)}
+      onPress={() => onViewDetail(item.id)}
     >
       <AppImage
         style={styles.thumbnail}
@@ -35,6 +44,17 @@ const MovieCard: React.FC<Props> = ({ containerStyle, item, onViewDetail }) => {
           <AppText color={colors.gray[400]}>{item.release_date}</AppText>
         </View>
         <AppText numberOfLines={2}>{item.overview}</AppText>
+
+        {onRemove && (
+          <TouchableOpacity
+            hitSlop={HIT_SLOP}
+            activeOpacity={0.7}
+            style={styles.removeButton}
+            onPress={handleRemove}
+          >
+           <Cancel size={16} />
+          </TouchableOpacity>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -67,5 +87,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 20,
     paddingHorizontal: 14,
+  },
+  removeButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
 });

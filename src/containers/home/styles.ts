@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   footerContainer: {
     alignItems: 'center',
     paddingHorizontal: 30,
+    paddingBottom: 16,
   },
   loadMoreButton: {
     width: '100%',

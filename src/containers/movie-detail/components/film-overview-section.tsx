@@ -1,5 +1,7 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useDispatch, useSelector } from '@states/store';
+import { addToWatchlist, removeFromWatchlist } from '@states/slices/watchlist';
 
 // components
 import { AppText, ScoreChart } from '@components';
@@ -14,6 +16,18 @@ interface Props {
 }
 
 const FilmOverviewSection: React.FC<Props> = ({ movie, credits }) => {
+  const dispatch = useDispatch();
+  const isInWatchlist = useSelector(
+    state => !!movie && state.watchlist.movies.some(m => m.id === movie.id),
+  );
+  const handleWatchlistPress = useCallback(() => {
+    if (!movie) return;
+    if (isInWatchlist) {
+      dispatch(removeFromWatchlist(movie.id));
+    } else {
+      dispatch(addToWatchlist(movie));
+    }
+  }, [dispatch, isInWatchlist, movie]);
   const director = credits?.crew.find(item => item.job === 'Director');
   const writer = credits?.crew.find(item => item.department === 'Writing');
 
@@ -74,18 +88,27 @@ const FilmOverviewSection: React.FC<Props> = ({ movie, credits }) => {
           {movie?.overview || 'No overview available.'}
         </AppText>
       </View>
-      <TouchableOpacity
-        activeOpacity={0.7}
-        style={styles.bookmarkButton}
-        accessibilityLabel="Add to watchlist"
-        accessibilityHint="Adds this movie to your watchlist"
-        accessibilityRole="button"
-      >
-        <Bookmark />
-        <AppText fontSize={18} fontWeight="semibold" color={colors.white}>
-          Add To Watchlist
-        </AppText>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.bookmarkButton}
+          accessibilityLabel={
+            isInWatchlist ? 'Remove from watchlist' : 'Add to watchlist'
+          }
+          accessibilityHint={
+            isInWatchlist
+              ? 'Removes this movie from your watchlist'
+              : 'Adds this movie to your watchlist'
+          }
+          accessibilityRole="button"
+          onPress={handleWatchlistPress}
+        >
+          <Bookmark />
+          <AppText fontSize={18} fontWeight="semibold" color={colors.white}>
+            {isInWatchlist ? 'Remove from Watchlist' : 'Add To Watchlist'}
+          </AppText>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -117,9 +140,12 @@ const styles = StyleSheet.create({
   overviewPart: {
     gap: 10,
   },
+  buttonContainer: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start'
+  },
   bookmarkButton: {
     gap: 10,
-    width: 200,
     borderWidth: 1,
     borderRadius: 5,
     paddingVertical: 7,

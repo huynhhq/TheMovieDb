@@ -90,8 +90,8 @@ const HomeScreenContent: React.FC<Props> = () => {
   ]);
 
   const renderItem = useMemo(() => {
-    const onViewDetail = (item: Movie) => {
-      goScreen('MovieDetail', { id: item.id });
+    const onViewDetail = (id: number) => {
+      goScreen('MovieDetail', { id });
     };
     return ({ item }: { item: Movie }) => (
       <MovieCard item={item} onViewDetail={onViewDetail} />
@@ -117,7 +117,7 @@ const HomeScreenContent: React.FC<Props> = () => {
   }, [result.length, loading, loadMore]);
 
   return (
-    <Container style={styles.container}>
+    <Container edges={['top']} style={styles.container}>
       <FlatList
         data={result}
         refreshing={loading}

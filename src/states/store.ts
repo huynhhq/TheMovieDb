@@ -31,7 +31,7 @@ import { sharedApi } from '@services/shared-service';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['movie'],
+  whitelist: ['movie', 'watchlist'],
   stateReconciler: autoMergeLevel2,
 };
 
